@@ -5,10 +5,11 @@ class NetatmoCarousel
         this.$container = $container
         
         this.setSlides()
-        this.setSiblings()      // I call "siblings" the arrows on the sides in order to run the carousel
-        this.setAuto()      
-        this.setPagination()
-        this.goTo(0)
+        this.alternateTextContainerPosition()   // what makes the blocks of text alternate left or right side position
+        this.setSiblings()      // Let's call "siblings" the arrows on the sides in order to run the carousel
+        this.setAuto()  // auto running through the images
+        this.setPagination()    // "spots" at the bottom to quick-run through images
+        this.goTo(0)    // initialization
     }
 
     setSlides()
@@ -18,16 +19,36 @@ class NetatmoCarousel
         this.slides.index = 0
     }
 
+    alternateTextContainerPosition()
+    {   
+        this.textContainers = {}
+
+        this.textContainers.active = !!this.$container.dataset.alternateBlocks
+        if (!this.textContainers.active)
+        {
+            return
+        }
+
+        this.textContainers.$items = this.$container.querySelectorAll('.text-container')
+        
+        for (let i = 0; i < this.textContainers.$items.length; i++) 
+        {
+            const element = this.textContainers.$items[i];
+            if (i%2 !== 0) // if i is impair
+            {
+                element.classList.add('alternate-position')
+            }
+        }
+    }
+
     setSiblings()
     {
         this.siblings = {} // {} = "un objet"
-        this.siblings.active = !!this.$container.dataset.siblings       // dataset nous permet d'accéder aux propriétés data du html
-                                                                        // '!true', ça fait false
+        this.siblings.active = !!this.$container.dataset.siblings       
 
-        // Siblings not active
-        if(!this.siblings.active)       // "si ce n'est pas actif"
+        if (!this.siblings.active)
         {
-            return      // on sort de la fonction
+            return   
         }
 
         // Create DOM
@@ -56,8 +77,7 @@ class NetatmoCarousel
         this.auto = {}
         this.auto.active = !!this.$container.dataset.auto
 
-        // Auto not active
-        if(!this.auto.active) // si l'auto n'est pas activé, la fonction s'arrête
+        if (!this.auto.active) 
         {
             return
         }
@@ -67,7 +87,7 @@ class NetatmoCarousel
             this.auto.interval = window.setInterval(() =>
             {
                 this.next() // goes to next slide at the end of the delay
-            }, 2000)
+            }, 4000)
         }
 
         this.auto.stop = () =>
@@ -93,8 +113,9 @@ class NetatmoCarousel
         this.pagination = {}
         this.pagination.active = !!this.$container.dataset.pagination
 
-        // Pagination not active
-        if(!this.pagination.active)
+        this.pagination.$items = []
+
+        if (!this.pagination.active)
         {
             return
         }
@@ -104,20 +125,20 @@ class NetatmoCarousel
         this.pagination.$container.classList.add('pagination')
         this.$container.appendChild(this.pagination.$container)
 
-        this.pagination.$items = []
+        
 
-        for(let i = 0; i < this.slides.$items.length; i++)
+        for (let i = 0; i < this.slides.$items.length; i++)
         {
             const $page = document.createElement('button')
             $page.classList.add('page')
-            this.pagination.$container.appendChild($page) // on les balance dans le DOM
+            this.pagination.$container.appendChild($page)
 
             $page.addEventListener('click', () =>
             {
                 this.goTo(i)
             })
 
-            this.pagination.$items.push($page) // je sauvegarde ça dans le tableau vide.
+            this.pagination.$items.push($page)
         }
     
     }
@@ -126,7 +147,7 @@ class NetatmoCarousel
     {
         let index = this.slides.index - 1
 
-        if(index < 0)
+        if (index < 0)
         {
             index = this.slides.$items.length - 1
         }
@@ -138,7 +159,7 @@ class NetatmoCarousel
     {
         let index = this.slides.index + 1
 
-        if(index > this.slides.$items.length - 1)
+        if (index > this.slides.$items.length - 1)
         {
             index = 0
         }
@@ -149,16 +170,16 @@ class NetatmoCarousel
     goTo(_index)
     {
         // Update slide classes
-        for(let i = 0; i < this.slides.$items.length; i++)
+        for (let i = 0; i < this.slides.$items.length; i++)
         {
             const $slide = this.slides.$items[i]
 
-            if(i < _index)
+            if (i < _index)
             {
                 $slide.classList.add('is-before')
                 $slide.classList.remove('is-current', 'is-after')
             }
-            else if(i === _index) 
+            else if (i === _index) 
             {
                 $slide.classList.add('is-current')
                 $slide.classList.remove('is-before', 'is-after')
@@ -171,17 +192,17 @@ class NetatmoCarousel
         }
 
         // Update pagination classes
-        for(let i = 0; i < this.pagination.$items.length; i++)
+        for (let i = 0; i < this.pagination.$items.length; i++)
         {
-            const $page = this.pagination. $items[i] // je récupère chacune des page
+            const $page = this.pagination. $items[i] 
 
-            if(i === _index) // si i correspond à l'index
+            if (i === _index)
             {
-                $page.classList.add('is-active') // je rajoute la classe active
+                $page.classList.add('is-active')
             }
-            else    // sinon
+            else   
             {
-                $page.classList.remove('is-active') // j'enlève la classe active
+                $page.classList.remove('is-active')
             }
         }
 

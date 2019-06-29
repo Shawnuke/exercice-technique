@@ -1,31 +1,24 @@
 # exercice-technique
 
 **INSTRUCTIONS:**
-> Realize a carousel. 
+> Réaliser un carousel. 
 <hr>
 
 # Table of Contents
 
-* [Author / Team Members](#author-/-team-members)
-* [Description](#description)
 * [Project Demo](#project-demo)
 * [Features](#features) 
 * [Issues](#issues)
 * [Credits / Contributors](#credits-/-contributors)
-* [License](#license)
 
-# Author / Team Members
+# Project demo
 
-## Lead developer
-* Corentin Boulanouar <corentin.boulanouar@hetic.net>
+Voir la démo en ligne : <a href="#">live demo</a>
 
-# Description
+# Fonctionnalités
 
-big introduction of what the project is about.
-
-# Features 
-
-* ..
+* Des flèches apparaissent sur les côtés de l'image au passage de la souris, et permettent
+* J'ai fait le choix 
 
 # Issues
 
@@ -34,10 +27,3 @@ big introduction of what the project is about.
 # Credits / Contributors
 
 * ...
-
-# License
-
-[MIT](LICENSE) © Corentin Boulanouar
-
-This project is licensed under the terms of the [MIT](LICENSE) license. <br>
-See the <a href=''>license.md</a> file for more information.
