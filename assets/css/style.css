@@ -1,15 +1,30 @@
 body
 {
-    background-color: #dddddd;
+    background-color: rgb(241, 241, 241);
+    font-size: 16px;
+}
+
+.wrapper
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 520px;
+}
+
+h1
+{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 5rem;
+    left: 50%;
 }
 
 .netatmo-carousel
 {
     position: relative;
-    margin: 60px;
-    width: 600px;
-    height: 400px;
-    background-color: greenyellow;
+    background-color: white;
 }
 
 /**
@@ -17,8 +32,7 @@ body
  */
 .netatmo-carousel .slides,
 .netatmo-carousel .slide,
-.netatmo-carousel .slide-content,
-.netatmo-carousel .text-container
+.netatmo-carousel .slide-content
 {
     position: absolute;
     top: 0;
@@ -30,7 +44,8 @@ body
 
 .netatmo-carousel .text-container
 {
-    width: 50%;
+    position: absolute;
+    top: 50%;
 }
 
 .netatmo-carousel .slide,
@@ -71,7 +86,6 @@ body
     align-items: center;
     top: 0;
     width: 60px;
-    height: 100%;
     background-color: rgba(0, 0, 0, 0.2); 
     border: none; 
     outline: none;
@@ -125,7 +139,6 @@ body
     justify-content: center;
     align-items: flex-end;
     position: absolute;
-    bottom: 0;
     left: 0;
     width: 100%;
     height: 80px;
@@ -137,8 +150,8 @@ body
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 24px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     padding: 0;
     border: none;
     outline: none;
@@ -150,8 +163,8 @@ body
 {
     content: '';
     display: block;
-    width: 6px;
-    height: 6px;
+    width: 0.6rem;
+    height: 0.6rem;
     border: 2px solid #ffffff;
     border-radius: 100%;
 }
@@ -162,7 +175,122 @@ body
     background-color: #ffffff;
 }
 
-.text-container
+.netatmo-carousel .text-container
 {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+/**
+ * Slides Textual Content
+ */
+.netatmo-carousel .alternate-position
+{
+    left: auto;
+    right: 0;
+}
+
+.netatmo-carousel h2
+{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.netatmo-carousel p
+{
+    color: #292929;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.netatmo-carousel h2,
+.netatmo-carousel p
+{
+    transition: all 0.5s ease-in-out 0.3s;
+    opacity: 1;
+    will-change: transform, opacity;
+}
+
+.netatmo-carousel .slide:not(.is-current) h2,
+.netatmo-carousel .slide:not(.is-current) p
+{
+    transform: translateY(1rem);
+    opacity: 0;
+}
+
+.netatmo-carousel img
+{
+    width: 100%;
+    object-fit: cover;
+}
+
+
+/**
+ *  media queries / Responsive
+ */
+
+@media screen and (max-width: 640px)
+{
+    .netatmo-carousel
+    {
+        margin: 0;
+        width: 100%;
+        height: 600px;
+    }
+
+    .netatmo-carousel .sibling
+    {
+        height: 50%;
+    }
+
+    .netatmo-carousel .pagination
+    {
+        bottom: 50%;
+    }   
+
+    .netatmo-carousel img
+    {
+        height: 50%;
+    }
+
+    .netatmo-carousel .text-container
+    {
+        width: 100%;
+        height: auto;
+        padding: 2rem;
+    }   
+}
+
+@media screen and (min-width: 640px)
+{
+    .netatmo-carousel
+    {
+        width: 640px;
+        height: 400px;
+    }
+
+    .netatmo-carousel .sibling
+    {
+        height: 100%;
+    }
+
+    .netatmo-carousel .pagination
+    {
+        bottom: 0;
+    }
+    
+    .netatmo-carousel img
+    {
+        height: 100%;
+    }
+
+    .netatmo-carousel .text-container
+    {
+        padding: 2rem;
+        margin: 0 2rem;
+        height: auto;
+        border-radius: 4px;
+        width: calc(50% - 2rem);
+        transform: translateY(-50%);
+    }
 }
