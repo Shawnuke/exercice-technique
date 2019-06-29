@@ -10,14 +10,14 @@ body
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 520px;
+    margin-bottom: 50px;
 }
 
 h1
 {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 2rem;
-    margin-bottom: 5rem;
+    margin: 5rem 0;
     left: 50%;
 }
 

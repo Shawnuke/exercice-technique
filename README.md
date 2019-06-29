@@ -12,7 +12,7 @@
 
 # Démo
 
-<a href="#">Voir la démo en ligne</a>
+<a href="https://shawnuke.github.io/exercice-technique/">Voir la démo en ligne</a>
 
 # Fonctionnalités
 
